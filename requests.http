@@ -1,0 +1,13 @@
+POST http://tickets.dev/api/users/signup
+Content-Type: application/json
+
+{
+  "email": "conor.ux@gmail.com",
+  "password": "jkfdlsastlk"
+}
+
+###
+
+GET http://tickets.dev/api/users/fkdslafjldkasf
+
+###
