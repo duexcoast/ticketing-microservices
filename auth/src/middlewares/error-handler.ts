@@ -1,8 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { CustomError } from '../errors/custom-error';
 
-interface SerializeError {}
-
 export const errorHandler = (
   err: Error,
   req: Request,
