@@ -1,4 +1,5 @@
 import { Document, Schema, Model, model, InferSchemaType } from 'mongoose';
+import { Password } from '../services/password';
 
 export interface User {
   email: string;
@@ -17,11 +18,13 @@ const userSchema = new Schema<User>({
   },
 });
 
+userSchema.pre('save', async function (done) {
+  if (this.isModified('password')) {
+    const hashed = await Password.toHash(this.get('password'));
+    this.set('password', hashed);
+  }
+});
+
 // type User = InferSchemaType<typeof userSchema>;
 
 export const User = model<User>('User', userSchema);
-
-const user = new User({
-  email: 'jfdksl',
-  password: 'kdfsjlafds',
-});
