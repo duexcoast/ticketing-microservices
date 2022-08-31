@@ -1,26 +1,38 @@
 import { Document, Schema, Model, model, InferSchemaType } from 'mongoose';
-import { Password } from '../services/password';
+import { PasswordManager } from '../services/passwordManager';
 
 export interface User {
   email: string;
   password: string;
 }
 
-const userSchema = new Schema<User>({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
+const userSchema = new Schema<User>(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    toJSON: {
+      transform(doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.password;
+      },
+      versionKey: false,
+    },
+  }
+);
 
 userSchema.pre('save', async function (done) {
   if (this.isModified('password')) {
-    const hashed = await Password.toHash(this.get('password'));
+    const hashed = await PasswordManager.toHash(this.get('password'));
     this.set('password', hashed);
   }
 });

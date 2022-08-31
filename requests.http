@@ -1,13 +1,38 @@
-POST http://tickets.dev/api/users/signup
+### Signup POST Request
+POST https://tickets.dev/api/users/signup
 Content-Type: application/json
 
 {
-  "email": "conor@gmail.com",
+  "email": "conorneyd@gmail.com",
   "password": "Bs5unPut*"
 }
 
 ###
 
+### SignIn POST Request
+POST https://tickets.dev/api/users/signin
+Content-Type: application/json
+
+{
+  "email": "conorneyd@gmail.com",
+  "password": "Bs5unPut*"
+}
+
+### 404 Route Not Found
 GET http://tickets.dev/api/users/fkdslafjldkasf
 
 ###
+
+### Signin Invalid POST Request
+POST https://tickets.dev/api/users/signin HTTP/1.1
+Content-Type: application/javascript
+
+{
+  "email": "fjkdlsfda",
+  "password": "123"
+}
+
+###
+
+### CurrentUser GET Request
+GET https://tickets.dev/api/users/currentuser
