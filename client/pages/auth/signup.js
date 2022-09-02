@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import Router from 'next/router';
+import axios from 'axios';
+import useRequest from '../../hooks/use-request';
 
 export default function signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { doRequest, errors } = useRequest({
+    url: '/api/users/signup',
+    method: 'post',
+    body: {
+      email,
+      password,
+    },
+    onSuccess: () => Router.push('/'),
+  });
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
-    console.log(email, password);
+
+    Router.push('/');
+
+    doRequest();
   };
 
   return (
@@ -65,6 +80,7 @@ export default function signup() {
             Forgot Password?
           </a>
         </div>
+        <>{errors}</>
       </form>
     </div>
   );
