@@ -1,23 +1,23 @@
 import axios from 'axios';
+import BaseLayout from '../components/base-layout';
+import getCurrentUser from './api/get-current-user';
 
 const Home = ({ currentUser }) => {
-  console.log(currentUser.currentUser);
-  return currentUser.currentUser ? (
-    <h1>You are signed in</h1>
-  ) : (
-    <h1>You are not signed in</h1>
+  return (
+    <BaseLayout currentUser={currentUser.currentUser}>
+      {currentUser.currentUser ? (
+        <h1>You are signed in</h1>
+      ) : (
+        <h1>You are not signed in</h1>
+      )}
+    </BaseLayout>
   );
 };
 
 export async function getServerSideProps({ req }) {
-  const { data: currentUser } = await axios.get(
-    'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/currentuser',
-    {
-      withCredentials: true,
-      headers: req.headers,
-    }
-  );
+  const currentUser = await getCurrentUser(req.headers);
+
   return { props: { currentUser } };
-} 
+}
 
 export default Home;

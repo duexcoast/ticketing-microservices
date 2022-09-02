@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "flowbite": "^1.5.3",
+    "flowbite-react": "^0.1.10",
     "next": "latest",
     "react": "18.1.0",
     "react-dom": "18.1.0"

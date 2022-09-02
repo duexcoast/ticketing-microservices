@@ -1,12 +1,7 @@
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <div>
-      <h1>Header!</h1>
-      <Component {...pageProps} />
-    </div>
-  );
+  return <Component {...pageProps} />;
 }
 
 export default MyApp;
