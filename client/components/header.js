@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from 'next/link';
-import SecondaryBtn from './ui/secondary-btn';
+import HeaderLogo from './ui/header-logo';
 import PrimaryBtn from './ui/primary-btn';
+import SecondaryBtn from './ui/secondary-btn';
 import MobileMenu from './ui/mobile-menu';
-import HeaderLink from './ui/HeaderLink';
-import HeaderLinkDiv from './ui/HeaderLinkDiv';
+import HeaderLink from './ui/header-link';
+import HeaderLinkDiv from './ui/header-link-div';
 
 export default function Header({ currentUser }) {
   const links = [
@@ -16,17 +16,10 @@ export default function Header({ currentUser }) {
     <header>
       <nav className='bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800'>
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
-          <Link href='/'>
-            <a className='flex items-center'>
-              <span className='self-center text-xl font-semibold whitespace-nowrap dark:text-white'>
-                Automatix
-              </span>
-            </a>
-          </Link>
-
+          <HeaderLogo />
           <div className='flex items-center lg:order-2'>
             {currentUser ? (
-              <SecondaryBtn href='/signout' label='Sign Out' />
+              <SecondaryBtn href='/auth/signout' label='Sign Out' />
             ) : (
               <>
                 <SecondaryBtn href='/auth/signin' label='Sign In' />
