@@ -7,7 +7,7 @@ export default function signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { doRequest, errors } = useRequest({
-    url: '/api/users/signup',
+    url: '/api/users/signin',
     method: 'post',
     body: {
       email,
@@ -30,7 +30,9 @@ export default function signup() {
         onSubmit={onSubmit}
         className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
       >
-        <h2 className='text-gray-900 text-xl font-bold my-2 text-center'>Sign Up</h2>
+        <h2 className='text-gray-900 text-xl font-bold my-2 text-center'>
+          Sign In
+        </h2>
         <div className='mb-4'>
           <label
             className='block text-gray-700 text-sm font-bold mb-2'
