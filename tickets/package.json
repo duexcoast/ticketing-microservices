@@ -17,7 +17,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "ISC", 
   "dependencies": {
     "@duexcoast/common": "^1.0.10",
     "@types/cookie-session": "^2.0.44",

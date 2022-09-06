@@ -15,7 +15,7 @@ router.post(
     body('password')
       .trim()
       .notEmpty()
-      .withMessage('Password must be beteen 4 and 20 characters'),
+      .withMessage('Password must be between 4 and 20 characters'),
   ],
   validateRequests,
   async (req: Request, res: Response) => {
