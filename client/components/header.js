@@ -30,7 +30,12 @@ export default function Header({ currentUser }) {
           </div>
           <HeaderLinkDiv>
             {links.map(({ href, label, isActive }) => (
-              <HeaderLink href={href} label={label} isActive={isActive} />
+              <HeaderLink
+                key={href}
+                href={href}
+                label={label}
+                isActive={isActive}
+              />
             ))}
           </HeaderLinkDiv>
         </div>
