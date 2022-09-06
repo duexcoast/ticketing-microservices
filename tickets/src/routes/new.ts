@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { currentUser, requireAuth, validateRequests } from '@duexcoast/common';
+import { Ticket } from '../models/ticket';
 
 const router = express.Router();
 
@@ -15,9 +16,17 @@ router.post(
       .withMessage('Price must be greater than 0'),
   ],
   validateRequests,
+  async (req: Request, res: Response) => {
+    const { title, price } = req.body;
 
-  (req: Request, res: Response) => {
-    res.sendStatus(200);
+    const ticket = new Ticket({
+      title,
+      price,
+      userId: req.currentUser!.id,
+    });
+    await ticket.save();
+
+    res.status(201).send(ticket);
   }
 );
 

@@ -1,4 +1,4 @@
-import { Document, Schema, Model, model, InferSchemaType } from 'mongoose';
+import { Schema, model } from 'mongoose';
 import { PasswordManager } from '../services/passwordManager';
 
 export interface User {
