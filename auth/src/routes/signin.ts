@@ -1,10 +1,10 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequests } from '../middlewares/validate-request';
-import { User } from '../models/users';
-import { BadRequestError } from '../errors/bad-request-error';
-import { PasswordManager } from '../services/passwordManager';
 import jwt from 'jsonwebtoken';
+import { validateRequests, BadRequestError } from '@duexcoast/common';
+
+import { PasswordManager } from '../services/passwordManager';
+import { User } from '../models/users';
 
 const router = express.Router();
 
