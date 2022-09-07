@@ -34,7 +34,7 @@ afterAll(async () => {
 global.getAuthCookie = () => {
   // build a JWT payload { id, email }
   const payload = {
-    id: '3219jklsd9',
+    id: new mongoose.Types.ObjectId().toHexString(),
     email: 'test@test.com',
   };
   // Create the JWT
@@ -42,7 +42,7 @@ global.getAuthCookie = () => {
 
   // Build the session object.
   const session = { jwt: token };
-  
+
   // Turn that session into JSON
   const sessionJSON = JSON.stringify(session);
 
