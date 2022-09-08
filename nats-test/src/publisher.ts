@@ -1,5 +1,5 @@
 import nats from 'node-nats-streaming';
-import { TicketCreatedPublisher } from './events/ticket-created-publisher';
+import { TicketCreatedPublisher } from 
 
 console.clear();
 
@@ -16,6 +16,7 @@ stan.on('connect', async () => {
       id: 'CZQ',
       title: 'j cole concert',
       price: 40,
+      userId: 'jkls2',
     });
   } catch (err) {
     console.log(err);
