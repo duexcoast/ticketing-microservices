@@ -4,42 +4,24 @@ import { randomBytes } from 'crypto';
 
 console.clear();
 
-const client = nats.connect('ticketing', randomBytes(4).toString('hex'), {
+const stan = nats.connect('ticketing', randomBytes(4).toString('hex'), {
   url: 'http://localhost:4222',
 });
 
-client.on('connect', () => {
+stan.on('connect', () => {
   console.log('Listener connected to NATS');
 
-  client.on('close', () => {
+  stan.on('close', () => {
     console.log('NATS connection closed!');
     process.exit();
   });
 
-  const options = client
-    .subscriptionOptions()
-    .setManualAckMode(true)
-    .setDeliverAllAvailable()
-    .setDurableName('accounting-service');
-  const subscription = client.subscribe(
-    'ticket:created',
-    'queue-group-name',
-    options
-  );
-
-  subscription.on('message', (msg: Message) => {
-    const data = msg.getData();
-
-    if (typeof data === 'string') {
-      console.log(`Received event # ${msg.getSequence()}, with data: ${data}`);
-    }
-    msg.ack();
-  });
+  new TicketCreatedListener(stan).listen()
 });
 // watching for interrupt signals
-process.on('SIGINT', () => client.close());
+process.on('SIGINT', () => stan.close());
 // watching for terminate signals
-process.on('SIGTERM', () => client.close());
+process.on('SIGTERM', () => stan.close());
 
 abstract class Listener {
   abstract subject: string;
@@ -79,5 +61,16 @@ abstract class Listener {
     return typeof data === 'string'
       ? JSON.parse(data)
       : JSON.parse(data.toString('utf8'));
+  }
+}
+
+class TicketCreatedListener extends Listener {
+  subject = 'ticket:created';
+  queueGroupName = 'payments-service';
+
+  onMessage(data: any, msg: Message) {
+    console.log('Event data!', data);
+
+    msg.ack();
   }
 }
