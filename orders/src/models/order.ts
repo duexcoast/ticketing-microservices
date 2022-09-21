@@ -2,6 +2,8 @@ import { Schema, model } from 'mongoose';
 import { OrderStatus } from '@duexcoast/common';
 import { Ticket } from './ticket';
 
+export { OrderStatus };
+
 export interface Order {
   userId: string;
   status: OrderStatus;
