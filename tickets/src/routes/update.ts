@@ -6,8 +6,8 @@ import {
   requireAuth,
   validateRequests,
 } from '@duexcoast/common';
-import { Ticket } from '../models/ticket';
-import { TicketUpdatedPublisher } from '../events/publishers/ticket-updated-pubilsher';
+import { Ticket } from 'src/models/ticket';
+import { TicketUpdatedPublisher } from 'src/events/publishers/ticket-updated-pubilsher';
 import { natsWrapper } from '../nats-wrapper';
 
 const router = express.Router();
