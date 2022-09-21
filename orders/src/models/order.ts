@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { OrderStatus } from '@duexcoast/common';
+import { Ticket } from './ticket';
 
 export interface Order {
   userId: string;
