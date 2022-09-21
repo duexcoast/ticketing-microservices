@@ -40,7 +40,7 @@ const start = async () => {
   }
   app.listen(3000, () => {
     console.log(`
-    🔑 Tickets Service
+    🔑 Orders Service
     📡 Listening on port 3000!
     `);
   });
