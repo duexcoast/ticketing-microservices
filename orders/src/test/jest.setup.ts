@@ -53,3 +53,5 @@ global.getAuthCookie = () => {
   // return a string thats the cookie with the encoded data
   return [`session=${base64}`];
 };
+
+it.todo('emits an order created event');
