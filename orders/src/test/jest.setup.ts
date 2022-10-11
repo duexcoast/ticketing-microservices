@@ -54,4 +54,3 @@ global.getAuthCookie = () => {
   return [`session=${base64}`];
 };
 
-it.todo('emits an order created event');

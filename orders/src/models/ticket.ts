@@ -4,6 +4,7 @@ import { Order, OrderStatus } from './order';
 export interface Ticket {
   title: string;
   price: number;
+  id: string;
 }
 export interface TicketMethods {
   isReserved(): Promise<boolean>;
@@ -35,7 +36,7 @@ const ticketSchema = new Schema<Ticket, TicketModel, TicketMethods>(
 
 ticketSchema.method('isReserved', async function isReserved() {
   //  this ==== ticket dcoument that we just called 'isReserved' on
-  const existingOrder = await Order.findOne({
+  const existingOrder: Order | null = await Order.findOne({
     ticket: this,
     status: {
       $in: [
