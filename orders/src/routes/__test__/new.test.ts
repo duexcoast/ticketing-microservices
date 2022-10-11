@@ -32,7 +32,7 @@ it('returns an error if the ticket is already reserved', async () => {
   await request(app)
     .post('/api/orders')
     .set('Cookie', global.getAuthCookie())
-    .send({ tiketId: ticket.id })
+    .send({ ticketId: ticket.id })
     .expect(400);
 });
 
